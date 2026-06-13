@@ -8,56 +8,59 @@ layout="centered"
 )
 
 pokemon = {
-"INFP": (
-"이브이",
-"🌷 상상력이 풍부하고 감정이 깊은 타입",
-"https://img.pokemondb.net/artwork/large/eevee.jpg"
-),
-"ENFP": (
-"피카츄",
-"⚡ 밝고 에너지 넘치는 타입",
-"https://img.pokemondb.net/artwork/large/pikachu.jpg"
-),
-"INFJ": (
-"루카리오",
-"💙 깊게 생각하고 배려하는 타입",
-"https://img.pokemondb.net/artwork/large/lucario.jpg"
-),
-"INTJ": (
-"뮤츠",
-"🧠 계획적이고 전략적인 타입",
-"https://img.pokemondb.net/artwork/large/mewtwo.jpg"
-)
+"INFP": {
+"name": "이브이",
+"desc": "🌷 상상력이 풍부하고 감정이 깊은 타입",
+"image": "https://img.pokemondb.net/artwork/large/eevee.jpg"
+},
+"ENFP": {
+"name": "피카츄",
+"desc": "⚡ 밝고 에너지 넘치는 타입",
+"image": "https://img.pokemondb.net/artwork/large/pikachu.jpg"
+},
+"INFJ": {
+"name": "루카리오",
+"desc": "💙 깊게 생각하고 배려하는 타입",
+"image": "https://img.pokemondb.net/artwork/large/lucario.jpg"
+},
+"INTJ": {
+"name": "뮤츠",
+"desc": "🧠 계획적이고 전략적인 타입",
+"image": "https://img.pokemondb.net/artwork/large/mewtwo.jpg"
+}
 }
 
 st.title("🌷 PokéMBTI")
 st.caption("MBTI로 나와 닮은 포켓몬 찾기")
 
 mbti = st.selectbox(
-"MBTI 선택",
+"🫧 MBTI 선택",
 ["INFP", "ENFP", "INFJ", "INTJ"]
 )
 
-if st.button("결과 보기"):
-name, desc, image = pokemon[mbti]
+clicked = st.button("💖 결과 보기")
+
+if clicked:
 
 ```
+result = pokemon[mbti]
+
 st.balloons()
 
 st.image(
-    image,
+    result["image"],
     width=300
 )
 
-st.subheader(name)
+st.subheader("🎀 " + result["name"])
 
-st.write(desc)
+st.write("### 🌸 MBTI 성향")
+st.write(result["desc"])
 
 score = random.randint(90, 100)
 
+st.write("### 💖 싱크로율")
 st.progress(score)
 
-st.success(
-    str(score) + "% 일치!"
-)
+st.success(f"{score}% 일치!")
 ```
