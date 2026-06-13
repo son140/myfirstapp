@@ -3,43 +3,76 @@ import random
 import time
 
 st.set_page_config(
-    page_title="PokéMBTI ✨",
-    page_icon="🫧",
+    page_title="PokéMBTI",
+    page_icon="🌷",
     layout="centered"
 )
 
-# ---------- 데이터 ----------
+# -------------------------
+# 데이터
+# -------------------------
 
-data = {
-    "INTJ": ["뮤츠","전략적이고 깊게 생각하는 타입 🧠"],
-    "INTP": ["후딘","호기심 폭발! 분석 천재 타입 📚"],
-    "ENTJ": ["리자몽","카리스마 넘치는 리더 🔥"],
-    "ENTP": ["팬텀","장난기와 아이디어의 화신 😏"],
+pokemon = {
 
-    "INFJ": ["루카리오","조용하지만 따뜻한 이상주의자 💙"],
-    "INFP": ["이브이","감성 가득 몽글몽글 🌷"],
-    "ENFJ": ["픽시","사람들을 빛나게 하는 타입 ✨"],
-    "ENFP": ["피카츄","밝고 자유로운 에너지 ⚡"],
+"INTJ":("뮤츠","https://img.pokemondb.net/artwork/large/mewtwo.jpg",
+"조용하지만 압도적인 전략가 🧠"),
 
-    "ISTJ": ["거북왕","믿음직하고 차분한 타입 🌊"],
-    "ISFJ": ["토게피","다정함 MAX 🥚"],
-    "ESTJ": ["보스로라","추진력 장인 🛡️"],
-    "ESFJ": ["푸린","사람 좋아하는 분위기 요정 🎀"],
+"INTP":("후딘","https://img.pokemondb.net/artwork/large/alakazam.jpg",
+"호기심과 분석력 최고 📚"),
 
-    "ISTP": ["개굴닌자","쿨하고 실전형 🌙"],
-    "ISFP": ["나몰빼미","조용하지만 감각적 🍃"],
-    "ESTP": ["에이스번","도전 좋아하는 행동파 🏃"],
-    "ESFP": ["파치리스","귀엽고 존재감 강함 🌈"]
+"ENTJ":("리자몽","https://img.pokemondb.net/artwork/large/charizard.jpg",
+"카리스마 넘치는 리더 🔥"),
+
+"ENTP":("팬텀","https://img.pokemondb.net/artwork/large/gengar.jpg",
+"아이디어와 장난기 폭발 😏"),
+
+"INFJ":("루카리오","https://img.pokemondb.net/artwork/large/lucario.jpg",
+"깊고 따뜻한 이상주의자 💙"),
+
+"INFP":("이브이","https://img.pokemondb.net/artwork/large/eevee.jpg",
+"몽글몽글 감성 타입 🌷"),
+
+"ENFJ":("픽시","https://img.pokemondb.net/artwork/large/clefable.jpg",
+"사람들을 빛나게 하는 타입 ✨"),
+
+"ENFP":("피카츄","https://img.pokemondb.net/artwork/large/pikachu.jpg",
+"귀엽고 자유로운 에너지 ⚡"),
+
+"ISTJ":("거북왕","https://img.pokemondb.net/artwork/large/blastoise.jpg",
+"안정감 최고 🌊"),
+
+"ISFJ":("토게피","https://img.pokemondb.net/artwork/large/togepi.jpg",
+"다정함 가득 🥚"),
+
+"ESTJ":("보스로라","https://img.pokemondb.net/artwork/large/aggron.jpg",
+"추진력 만렙 🛡️"),
+
+"ESFJ":("푸린","https://img.pokemondb.net/artwork/large/jigglypuff.jpg",
+"분위기 메이커 🎀"),
+
+"ISTP":("개굴닌자","https://img.pokemondb.net/artwork/large/greninja.jpg",
+"쿨한 행동파 🌙"),
+
+"ISFP":("나몰빼미","https://img.pokemondb.net/artwork/large/rowlet.jpg",
+"조용한 감성러 🍃"),
+
+"ESTP":("에이스번","https://img.pokemondb.net/artwork/large/cinderace.jpg",
+"모험 좋아하는 타입 🏃"),
+
+"ESFP":("파치리스","https://img.pokemondb.net/artwork/large/pachirisu.jpg",
+"존재감 넘치는 귀요미 🌈")
 }
 
 quotes = [
-    "포켓몬 세계에서 입단 제안 도착 📩",
-    "이 조합… 생각보다 꽤 찰떡인데? 💌",
-    "오늘의 운명 매칭 완료 ✨",
-    "포켓몬이 먼저 널 골랐대 🌸"
+"포켓몬 세계에서 스카우트 제안 도착 💌",
+"오늘의 운명 매칭 완료 ✨",
+"이 조합 꽤 귀엽다…🌸",
+"포켓몬이 널 먼저 골랐대 🫧"
 ]
 
-# ---------- 디자인 ----------
+# -------------------------
+# 디자인
+# -------------------------
 
 st.markdown("""
 <style>
@@ -47,85 +80,82 @@ st.markdown("""
 .stApp{
 background:
 linear-gradient(
-135deg,
-#ffe6f5,
-#f2ebff,
-#e5f7ff
+180deg,
+#fffdfd,
+#fff7fb,
+#f6f3ff
 );
 }
 
 .hero{
-padding:40px;
-border-radius:32px;
 
-backdrop-filter:blur(18px);
+padding:40px;
 
 background:
-rgba(255,255,255,0.35);
+rgba(255,255,255,.65);
 
-border:
-1px solid rgba(255,255,255,0.5);
+border-radius:30px;
+
+backdrop-filter:blur(20px);
 
 text-align:center;
 
+border:1px solid #ffffff;
+
 box-shadow:
-0 10px 40px rgba(0,0,0,.08);
+0 12px 40px rgba(255,190,220,.15);
+
 }
 
 .result{
 
 padding:28px;
 
-border-radius:28px;
-
 background:white;
 
+border-radius:28px;
+
 box-shadow:
-0 10px 35px rgba(255,180,220,.25);
+0 10px 50px rgba(230,180,255,.18);
 
-animation:up .5s ease;
-}
-
-@keyframes up{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-
-to{
-opacity:1;
-transform:none;
-}
 }
 
 .title{
-font-size:46px;
+
+font-size:42px;
+
 font-weight:900;
+
+color:#555;
+
 }
 
-.sub{
-opacity:.7;
+.caption{
+
+color:#999;
+
 }
 
-.poke{
-font-size:52px;
-text-align:center;
+img{
+
+border-radius:20px;
+
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- 화면 ----------
+# -------------------------
 
 st.markdown("""
 <div class='hero'>
 
 <div class='title'>
-🌸 PokéMBTI ✨
+🌷 PokéMBTI
 </div>
 
-<div class='sub'>
-MBTI로 찾는 나의 운명 포켓몬
+<div class='caption'>
+MBTI로 찾는 나의 포켓몬
 </div>
 
 </div>
@@ -134,36 +164,41 @@ MBTI로 찾는 나의 운명 포켓몬
 st.write("")
 
 mbti = st.selectbox(
-    "🫧 MBTI 선택",
-    [""] + list(data.keys())
+"🫧 MBTI 선택",
+[""]+list(pokemon.keys())
 )
 
-if st.button("✨ 운명 확인하기", use_container_width=True):
+if st.button("✨ 결과 보기", use_container_width=True):
 
     if mbti:
 
-        bar = st.progress(0)
+        progress = st.progress(0)
 
         for i in range(101):
-            time.sleep(0.008)
-            bar.progress(i)
+            time.sleep(0.006)
+            progress.progress(i)
 
-        st.balloons()
+        # 풍선 여러 번
+        for _ in range(3):
+            st.balloons()
 
-        poke, text = data[mbti]
+        name, img, desc = pokemon[mbti]
 
-        compatibility = random.randint(88, 100)
+        sync = random.randint(90,100)
 
-        st.markdown(f"""
-        <div class='result'>
+        st.markdown("<div class='result'>",
+        unsafe_allow_html=True)
 
-        <div class='poke'>
-        🎀 {poke}
-        </div>
+        st.image(
+            img,
+            use_container_width=True
+        )
 
-        <h2 align='center'>
-        {mbti}와 제일 잘 어울려!
-        </h2>
+        st.markdown(
+        f"""
+        <h1 align='center'>
+        🎀 {name}
+        </h1>
 
         <p align='center'>
         {random.choice(quotes)}
@@ -171,26 +206,21 @@ if st.button("✨ 운명 확인하기", use_container_width=True):
 
         <hr>
 
-        <h3>🌷 성향</h3>
+        ### 🌸 성향
+        {desc}
 
-        <p>
-        {text}
-        </p>
+        ### 💖 싱크로율
+        # {sync}%
 
-        <h3>💖 싱크로율</h3>
+        너랑 분위기가 꽤 잘 어울려 ✨
+        """,
+        unsafe_allow_html=True
+        )
 
-        <h1>
-        {compatibility}%
-        </h1>
+        st.markdown("</div>",
+        unsafe_allow_html=True)
 
-        <p>
-        너의 분위기랑 포켓몬 에너지가 연결됐어 ✨
-        </p>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.success("포켓몬이 널 선택했어 🎈")
+        st.success("매칭 완료 🎈")
 
 st.write("")
 st.caption("🫧 made with streamlit")
