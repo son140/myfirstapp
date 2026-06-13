@@ -1,4 +1,99 @@
-import streamlit as st
+import streamlit as stimport streamlit as st
+import random
+import time
+
+st.set_page_config(
+page_title="PokéMBTI",
+page_icon="🌷",
+layout="centered"
+)
+
+pokemon = {
+"INFP": [
+"이브이",
+"https://img.pokemondb.net/artwork/large/eevee.jpg",
+"🌷 상상력이 풍부하고 감정이 깊은 타입",
+"따뜻하고 다양한 가능성을 가진 분위기!"
+],
+
+```
+"ENFP": [
+    "피카츄",
+    "https://img.pokemondb.net/artwork/large/pikachu.jpg",
+    "⚡ 밝고 자유로운 에너지 타입",
+    "주변을 즐겁게 만드는 매력!"
+],
+
+"INTJ": [
+    "뮤츠",
+    "https://img.pokemondb.net/artwork/large/mewtwo.jpg",
+    "🧠 계획적이고 전략적인 타입",
+    "조용하지만 강한 존재감!"
+],
+
+"INFJ": [
+    "루카리오",
+    "https://img.pokemondb.net/artwork/large/lucario.jpg",
+    "💙 깊고 따뜻한 성향",
+    "신뢰감 있는 분위기!"
+]
+```
+
+}
+
+all_mbti = [
+"INTJ","INTP","ENTJ","ENTP",
+"INFJ","INFP","ENFJ","ENFP",
+"ISTJ","ISFJ","ESTJ","ESFJ",
+"ISTP","ISFP","ESTP","ESFP"
+]
+
+for mbti in all_mbti:
+if mbti not in pokemon:
+pokemon[mbti] = [
+"나몰빼미",
+"https://img.pokemondb.net/artwork/large/rowlet.jpg",
+"✨ 균형 있고 편안한 타입",
+"자연스럽고 귀여운 분위기!"
+]
+
+st.title("🌷 PokéMBTI")
+st.caption("MBTI로 나와 닮은 포켓몬 찾기")
+
+selected = st.selectbox(
+"🫧 MBTI 선택",
+all_mbti
+)
+
+if st.button("💖 결과 보기"):
+
+```
+bar = st.progress(0)
+
+for i in range(100):
+    time.sleep(0.01)
+    bar.progress(i + 1)
+
+st.balloons()
+
+result = pokemon[selected]
+
+st.image(
+    result[1],
+    width=320
+)
+
+st.subheader(f"🎀 {result[0]}")
+
+st.write("### 🌸 MBTI 성향")
+st.write(result[2])
+
+st.write("### ✨ 왜 어울릴까?")
+st.write(result[3])
+
+st.success("매칭 완료 🎈")
+```
+
 import random
 import time
 
