@@ -7,10 +7,6 @@ st.set_page_config(
     layout="centered"
 )
 
-# -------------------
-# 디자인
-# -------------------
-
 st.markdown("""
 <style>
 
@@ -20,95 +16,68 @@ linear-gradient(
 135deg,
 #fff6fb,
 #f7f2ff,
-#eef5ff
+#eef7ff
 );
 }
 
-.main-card{
+.card{
 background:white;
-padding:35px;
-border-radius:30px;
-box-shadow:0 10px 40px rgba(190,180,255,.25);
+padding:32px;
+border-radius:28px;
+box-shadow:0 10px 40px rgba(180,180,255,.2);
 }
 
 .title{
 text-align:center;
-font-size:52px;
+font-size:48px;
 font-weight:900;
-background:linear-gradient(
-90deg,
-#ff9fd6,
-#9a8cff
-);
-
--webkit-background-clip:text;
-color:transparent;
 }
 
-.subtitle{
+.sub{
 text-align:center;
 color:#888;
 }
 
-.result{
-background:#ffffffcc;
-padding:25px;
-border-radius:24px;
-}
-
 </style>
-""",
-unsafe_allow_html=True
-)
-
-# -------------------
-# 데이터
-# -------------------
+""", unsafe_allow_html=True)
 
 pokemon = {
 
-"INFP":{
-"name":"이브이",
-"img":"https://img.pokemondb.net/artwork/large/eevee.jpg",
-"text":"🌷 상상력이 풍부하고 감정이 깊어요."
-},
+"INTJ":["뮤츠","🧠 전략적이고 조용한 카리스마","https://img.pokemondb.net/artwork/large/mewtwo.jpg"],
+"INTP":["나몰빼미","🌙 분석적이고 자기 세계가 뚜렷함","https://img.pokemondb.net/artwork/large/rowlet.jpg"],
+"ENTJ":["리자몽","🔥 추진력 있고 리더십 있음","https://img.pokemondb.net/artwork/large/charizard.jpg"],
+"ENTP":["팬텀","😏 아이디어 많고 자유로움","https://img.pokemondb.net/artwork/large/gengar.jpg"],
 
-"ENFP":{
-"name":"피카츄",
-"img":"https://img.pokemondb.net/artwork/large/pikachu.jpg",
-"text":"⚡ 에너지 넘치고 사람을 행복하게 만들어요."
-},
+"INFJ":["루카리오","💙 깊고 따뜻한 성향","https://img.pokemondb.net/artwork/large/lucario.jpg"],
+"INFP":["이브이","🌷 감성적이고 상상력 풍부","https://img.pokemondb.net/artwork/large/eevee.jpg"],
+"ENFJ":["픽시","✨ 사람 챙기고 다정함","https://img.pokemondb.net/artwork/large/clefable.jpg"],
+"ENFP":["피카츄","⚡ 밝고 에너지 넘침","https://img.pokemondb.net/artwork/large/pikachu.jpg"],
 
-"INFJ":{
-"name":"루카리오",
-"img":"https://img.pokemondb.net/artwork/large/lucario.jpg",
-"text":"💙 차분하고 깊은 생각을 하는 편이에요."
-},
+"ISTJ":["거북왕","🌊 책임감 강하고 안정적","https://img.pokemondb.net/artwork/large/blastoise.jpg"],
+"ISFJ":["토게피","🥚 배려 깊고 다정함","https://img.pokemondb.net/artwork/large/togepi.jpg"],
+"ESTJ":["보스로라","🛡️ 추진력 강함","https://img.pokemondb.net/artwork/large/aggron.jpg"],
+"ESFJ":["푸린","🎀 분위기 메이커","https://img.pokemondb.net/artwork/large/jigglypuff.jpg"],
 
-"INTJ":{
-"name":"뮤츠",
-"img":"https://img.pokemondb.net/artwork/large/mewtwo.jpg",
-"text":"🧠 전략적이고 조용한 카리스마가 있어요."
-}
+"ISTP":["개굴닌자","🌌 침착하고 실전형","https://img.pokemondb.net/artwork/large/greninja.jpg"],
+"ISFP":["치코리타","🍃 감성적이고 부드러움","https://img.pokemondb.net/artwork/large/chikorita.jpg"],
+"ESTP":["에이스번","🏃 활동적이고 자신감 있음","https://img.pokemondb.net/artwork/large/cinderace.jpg"],
+"ESFP":["파치리스","🌈 귀엽고 활발함","https://img.pokemondb.net/artwork/large/pachirisu.jpg"]
 
 }
-
-# -------------------
 
 st.markdown("""
-<div class="main-card">
+<div class="card">
 
 <div class="title">
 🌷 PokéMBTI
 </div>
 
-<div class="subtitle">
+<div class="sub">
 MBTI로 나와 닮은 포켓몬 찾기 ✨
 </div>
 
 </div>
-""",
-unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 st.write("")
 
@@ -127,32 +96,27 @@ use_container_width=True
     result = pokemon[mbti]
 
     score = random.randint(
-        91,
+        90,
         100
     )
 
-    st.markdown(
-        "<div class='result'>",
-        unsafe_allow_html=True
-    )
+    left,right = st.columns([1,1])
 
-    c1,c2 = st.columns([1,1])
-
-    with c1:
+    with left:
 
         st.image(
-            result["img"],
+            result[2],
             use_container_width=True
         )
 
-    with c2:
+    with right:
 
         st.markdown(
 f"""
-# 🎀 {result["name"]}
+# 🎀 {result[0]}
 
 ### 🌸 성향
-{result["text"]}
+{result[1]}
 
 ### 💖 싱크로율
 {score}%
@@ -161,14 +125,9 @@ f"""
 """
 )
 
-    st.markdown(
-        "</div>",
-        unsafe_allow_html=True
-    )
-
     st.progress(score)
 
     st.success("매칭 완료 🎈")
 
 st.write("")
-st.caption("made with 🌷")
+st.caption("made with 🌷 streamlit")
