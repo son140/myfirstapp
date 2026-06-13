@@ -1,4 +1,99 @@
-import streamlit as st
+import streamlit as stimport streamlit as st
+import random
+
+st.set_page_config(
+page_title="PokéMBTI",
+page_icon="🌷",
+layout="centered"
+)
+
+pokemon = {
+"INFP": {
+"name": "이브이",
+"image": "https://img.pokemondb.net/artwork/large/eevee.jpg",
+"mbti": "🌷 상상력이 풍부하고 감정이 깊은 타입이에요.",
+"match": "따뜻하고 다양한 가능성을 가진 분위기예요."
+},
+
+```
+"ENFP": {
+    "name": "피카츄",
+    "image": "https://img.pokemondb.net/artwork/large/pikachu.jpg",
+    "mbti": "⚡ 밝고 자유롭고 에너지가 넘치는 타입이에요.",
+    "match": "주변 분위기를 즐겁게 만들어요."
+},
+
+"INFJ": {
+    "name": "루카리오",
+    "image": "https://img.pokemondb.net/artwork/large/lucario.jpg",
+    "mbti": "💙 조용하지만 깊고 따뜻한 타입이에요.",
+    "match": "신뢰감을 주는 분위기를 가져요."
+},
+
+"INTJ": {
+    "name": "뮤츠",
+    "image": "https://img.pokemondb.net/artwork/large/mewtwo.jpg",
+    "mbti": "🧠 계획적이고 전략적인 타입이에요.",
+    "match": "조용하지만 존재감이 강해요."
+}
+```
+
+}
+
+mbti_list = [
+"INTJ","INTP","ENTJ","ENTP",
+"INFJ","INFP","ENFJ","ENFP",
+"ISTJ","ISFJ","ESTJ","ESFJ",
+"ISTP","ISFP","ESTP","ESFP"
+]
+
+default = {
+"name": "나몰빼미",
+"image": "https://img.pokemondb.net/artwork/large/rowlet.jpg",
+"mbti": "✨ 균형 있고 편안한 타입이에요.",
+"match": "자연스럽고 귀여운 분위기예요."
+}
+
+for mbti in mbti_list:
+if mbti not in pokemon:
+pokemon[mbti] = default
+
+st.title("🌷 PokéMBTI")
+st.caption("MBTI로 나와 닮은 포켓몬 찾기")
+
+selected = st.selectbox(
+"🫧 MBTI 선택",
+mbti_list
+)
+
+if st.button("💖 결과 보기"):
+
+```
+st.balloons()
+
+result = pokemon[selected]
+
+st.image(
+    result["image"],
+    width=320
+)
+
+st.subheader("🎀 " + result["name"])
+
+st.markdown("### 🌸 MBTI 성향")
+st.write(result["mbti"])
+
+st.markdown("### ✨ 왜 어울릴까?")
+st.write(result["match"])
+
+score = random.randint(90, 100)
+
+st.markdown("### 💖 싱크로율")
+st.progress(score)
+
+st.success(f"{score}% 일치!")
+```
+
 import random
 
 st.set_page_config(
