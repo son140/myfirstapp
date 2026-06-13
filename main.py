@@ -7,58 +7,57 @@ page_icon="🌷",
 layout="centered"
 )
 
-data = {
-"INFP": {
-"name": "이브이",
-"desc": "🌷 상상력이 풍부하고 감정이 깊은 타입",
-"image": "https://img.pokemondb.net/artwork/large/eevee.jpg"
-},
-"ENFP": {
-"name": "피카츄",
-"desc": "⚡ 밝고 에너지 넘치는 타입",
-"image": "https://img.pokemondb.net/artwork/large/pikachu.jpg"
-},
-"INFJ": {
-"name": "루카리오",
-"desc": "💙 조용하지만 깊은 생각을 하는 타입",
-"image": "https://img.pokemondb.net/artwork/large/lucario.jpg"
-},
-"INTJ": {
-"name": "뮤츠",
-"desc": "🧠 계획적이고 목표 지향적인 타입",
-"image": "https://img.pokemondb.net/artwork/large/mewtwo.jpg"
-}
+pokemon = {
+"INFP": (
+"이브이",
+"🌷 상상력이 풍부하고 감정이 깊은 타입",
+"https://img.pokemondb.net/artwork/large/eevee.jpg"
+),
+"ENFP": (
+"피카츄",
+"⚡ 밝고 에너지 넘치는 타입",
+"https://img.pokemondb.net/artwork/large/pikachu.jpg"
+),
+"INFJ": (
+"루카리오",
+"💙 깊게 생각하고 배려하는 타입",
+"https://img.pokemondb.net/artwork/large/lucario.jpg"
+),
+"INTJ": (
+"뮤츠",
+"🧠 계획적이고 전략적인 타입",
+"https://img.pokemondb.net/artwork/large/mewtwo.jpg"
+)
 }
 
 st.title("🌷 PokéMBTI")
-st.caption("MBTI로 어울리는 포켓몬 찾기")
+st.caption("MBTI로 나와 닮은 포켓몬 찾기")
 
-choice = st.selectbox(
-"🫧 MBTI 선택",
-list(data.keys())
+mbti = st.selectbox(
+"MBTI 선택",
+["INFP", "ENFP", "INFJ", "INTJ"]
 )
 
-if st.button("💖 결과 보기"):
+if st.button("결과 보기"):
+name, desc, image = pokemon[mbti]
 
 ```
-result = data[choice]
-
 st.balloons()
 
 st.image(
-    result["image"],
+    image,
     width=300
 )
 
-st.subheader("🎀 " + result["name"])
+st.subheader(name)
 
-st.write("### 🌸 성향")
-st.write(result["desc"])
+st.write(desc)
 
 score = random.randint(90, 100)
 
-st.write("### 💖 싱크로율")
 st.progress(score)
 
-st.success(f"{score}% 일치!")
+st.success(
+    str(score) + "% 일치!"
+)
 ```
