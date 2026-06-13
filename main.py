@@ -3,109 +3,113 @@ import random
 import time
 
 st.set_page_config(
-page_title="PokéMBTI ✨",
-page_icon="🌷",
+page_title="PokéMBTI 🌷",
+page_icon="✨",
 layout="centered"
 )
 
-data={
+# -----------------------
 
-"INFP":(
-"이브이",
-"https://img.pokemondb.net/artwork/large/eevee.jpg",
-"🌷 조용하지만 마음이 깊고 상상력이 풍부해. 자기만의 세계가 있고 소중한 사람을 오래 기억하는 편.",
-"이브이처럼 다양한 가능성과 따뜻한 분위기를 가진 타입!"
-),
+# 데이터
 
-"ENFP":(
-"피카츄",
-"https://img.pokemondb.net/artwork/large/pikachu.jpg",
-"⚡ 밝고 호기심 많고 새로운 걸 좋아해. 주변에 에너지를 주는 편.",
-"피카츄처럼 존재만으로 분위기를 밝게 만드는 타입!"
-),
+# -----------------------
 
-"INTJ":(
-"뮤츠",
-"https://img.pokemondb.net/artwork/large/mewtwo.jpg",
-"🧠 계획적이고 독립적이며 깊게 생각하는 편.",
-"뮤츠처럼 조용하지만 강한 존재감!"
-),
+pokemon_data = {
 
-"INFJ":(
-"루카리오",
-"https://img.pokemondb.net/artwork/large/lucario.jpg",
-"💙 사람 감정을 잘 읽고 가치관이 뚜렷한 편.",
-"루카리오처럼 차분하고 신뢰감 있는 타입!"
-)
+"INFP":{
+"name":"이브이",
+"img":"https://img.pokemondb.net/artwork/large/eevee.jpg",
+"mbti":"🌷 상상력이 풍부하고 감정이 깊은 편. 자기만의 가치관을 중요하게 생각해.",
+"reason":"이브이처럼 다양한 가능성과 따뜻한 분위기를 가진 타입!"
+},
+
+"ENFP":{
+"name":"피카츄",
+"img":"https://img.pokemondb.net/artwork/large/pikachu.jpg",
+"mbti":"⚡ 밝고 호기심 많고 사람에게 에너지를 주는 타입.",
+"reason":"피카츄처럼 존재만으로 분위기를 밝게 만들어!"
+},
+
+"INFJ":{
+"name":"루카리오",
+"img":"https://img.pokemondb.net/artwork/large/lucario.jpg",
+"mbti":"💙 사람 감정을 잘 이해하고 생각이 깊은 편.",
+"reason":"루카리오처럼 차분하고 신뢰감 있어!"
+},
+
+"INTJ":{
+"name":"뮤츠",
+"img":"https://img.pokemondb.net/artwork/large/mewtwo.jpg",
+"mbti":"🧠 계획적이고 독립적이며 분석적인 타입.",
+"reason":"뮤츠처럼 조용하지만 존재감 강해!"
 }
 
-# 나머지 자동 채우기
+}
 
-fallback=(
-"나몰빼미",
-"https://img.pokemondb.net/artwork/large/rowlet.jpg",
-"✨ 균형 있고 자신만의 매력이 있는 타입.",
-"자연스럽고 편안한 분위기!"
-)
-
-all_mbti=[
+all_mbti = [
 "INTJ","INTP","ENTJ","ENTP",
 "INFJ","INFP","ENFJ","ENFP",
 "ISTJ","ISFJ","ESTJ","ESFJ",
 "ISTP","ISFP","ESTP","ESFP"
 ]
 
-for i in all_mbti:
-if i not in data:
-data[i]=fallback
+default = {
+"name":"나몰빼미",
+"img":"https://img.pokemondb.net/artwork/large/rowlet.jpg",
+"mbti":"✨ 차분하고 자신만의 분위기가 있는 타입.",
+"reason":"나몰빼미처럼 편안하고 자연스러운 매력!"
+}
+
+for mbti in all_mbti:
+if mbti not in pokemon_data:
+pokemon_data[mbti] = default
+
+# -----------------------
+
+# 스타일
+
+# -----------------------
 
 st.markdown("""
 
 <style>
 
 .stApp{
-
 background:
 linear-gradient(
 180deg,
-#fffdfd,
-#fff7fb,
-#f5f4ff
+#fffefe,
+#fff8fb,
+#f6f4ff
 );
-
 }
 
-.block{
+.hero{
 
-padding:38px;
+padding:35px;
 
 background:
-rgba(255,255,255,.68);
+rgba(255,255,255,.72);
 
-border-radius:34px;
+border-radius:30px;
 
-backdrop-filter:blur(16px);
+text-align:center;
+
+box-shadow:
+0 10px 40px rgba(220,210,250,.2);
 
 }
 
 .card{
 
-padding:24px;
+padding:28px;
 
 background:white;
 
 border-radius:30px;
 
 box-shadow:
-0 12px 40px rgba(210,210,240,.18);
-
-}
-
-.img{
-
-border-radius:22px;
-
-overflow:hidden;
+0 12px 40px rgba(230,210,255,.2);
 
 }
 
@@ -113,39 +117,42 @@ overflow:hidden;
 
 font-size:42px;
 
-font-weight:900;
-
-text-align:center;
+font-weight:800;
 
 color:#666;
 
 }
 
-.center{
-text-align:center;
+.small{
+color:#999;
 }
 
 </style>
 
-""",unsafe_allow_html=True)
+""",
+unsafe_allow_html=True)
+
+# -----------------------
 
 st.markdown("""
 
-<div class='block'>
-<div class='title'>
+<div class="hero">
+
+<div class="title">
 🌷 PokéMBTI
 </div>
 
-<div class='center'>
-나와 닮은 포켓몬 찾기 ✨
+<div class="small">
+MBTI로 나와 닮은 포켓몬 찾기
 </div>
 
 </div>
-""",unsafe_allow_html=True)
+""",
+unsafe_allow_html=True)
 
 st.write("")
 
-mbti=st.selectbox(
+selected = st.selectbox(
 "🫧 MBTI 선택",
 all_mbti
 )
@@ -156,67 +163,74 @@ use_container_width=True
 ):
 
 ```
-p=st.progress(0)
+bar = st.progress(0)
 
-for i in range(100):
-    time.sleep(.008)
-    p.progress(i+1)
+for num in range(100):
+    time.sleep(0.008)
+    bar.progress(num+1)
 
 st.balloons()
 
-poke,img,mbti_text,why=data[mbti]
+info = pokemon_data[selected]
 
-score=random.randint(91,100)
+score = random.randint(90,100)
 
-st.markdown("<div class='card'>",
-unsafe_allow_html=True)
+st.markdown(
+```
 
-left,right=st.columns([1,1])
+"<div class='card'>",
+unsafe_allow_html=True
+)
 
-with left:
+```
+col1,col2 = st.columns([1.2,1])
+
+with col1:
 
     st.image(
-        img,
+        info["img"],
         use_container_width=True
     )
 
-with right:
+with col2:
 
     st.markdown(
 ```
 
 f"""
 
-### 🎀 {poke}
+# 🎀 {info["name"]}
 
-{random.choice([
-"운명 매칭 완료 💌",
-"포켓몬이 널 골랐대 ✨",
-"꽤 잘 어울리는 조합 🌸"
-])}
+### 🌸 MBTI 성향
 
-### 🌷 MBTI 성향
+{info["mbti"]}
 
-{mbti_text}
+### ✨ 왜 어울릴까?
 
-### 🫧 왜 어울릴까?
-
-{why}
+{info["reason"]}
 
 ### 💖 싱크로율
 
 # {score}%
 
+포켓몬이 널 선택했어 🌷
 """
 )
 
 ```
-st.markdown("</div>",
-unsafe_allow_html=True)
-
-st.success(
-    f"{mbti} × {poke} 매칭 성공 🎈"
-)
+st.markdown(
 ```
 
-st.caption("made with 💌 streamlit")
+"</div>",
+unsafe_allow_html=True
+)
+
+```
+st.success(
+```
+
+f"{selected} 매칭 완료 🎈"
+)
+
+st.write("")
+st.caption("made with 🌷 streamlit")
