@@ -3,7 +3,208 @@ import random
 import time
 
 st.set_page_config(
+page_title="PokéMBTI 🌷",import streamlit as st
+import random
+import time
+
+# -------------------
+
+# 기본 설정
+
+# -------------------
+
+st.set_page_config(
 page_title="PokéMBTI 🌷",
+page_icon="✨",
+layout="centered"
+)
+
+# -------------------
+
+# 포켓몬 데이터
+
+# -------------------
+
+pokemon = {
+"INTJ":["뮤츠",
+"https://img.pokemondb.net/artwork/large/mewtwo.jpg",
+"🧠 조용하고 계획적인 전략가 타입",
+"깊게 생각하고 자기 목표를 끝까지 밀고 가는 분위기!"],
+
+"INFP":["이브이",
+"https://img.pokemondb.net/artwork/large/eevee.jpg",
+"🌷 상상력 풍부하고 감정이 깊은 타입",
+"따뜻하고 다양한 가능성을 가진 분위기!"],
+
+"ENFP":["피카츄",
+"https://img.pokemondb.net/artwork/large/pikachu.jpg",
+"⚡ 밝고 자유롭고 에너지 넘치는 타입",
+"사람들에게 좋은 영향을 주는 느낌!"],
+
+"INFJ":["루카리오",
+"https://img.pokemondb.net/artwork/large/lucario.jpg",
+"💙 조용하지만 사람을 잘 이해하는 타입",
+"차분하고 믿음직한 에너지!"]
+}
+
+all_mbti = [
+"INTJ","INTP","ENTJ","ENTP",
+"INFJ","INFP","ENFJ","ENFP",
+"ISTJ","ISFJ","ESTJ","ESFJ",
+"ISTP","ISFP","ESTP","ESFP"
+]
+
+for mbti in all_mbti:
+if mbti not in pokemon:
+pokemon[mbti]=[
+"나몰빼미",
+"https://img.pokemondb.net/artwork/large/rowlet.jpg",
+"✨ 균형 있고 자신만의 분위기를 가진 타입",
+"편안하고 자연스러운 매력이 있어!"
+]
+
+# -------------------
+
+# 디자인
+
+# -------------------
+
+st.markdown("""
+
+<style>
+
+.stApp{
+background:
+linear-gradient(
+180deg,
+#fffdfd,
+#fff8fb,
+#f6f4ff
+);
+}
+
+.box{
+padding:35px;
+background:white;
+border-radius:28px;
+box-shadow:
+0 10px 35px rgba(220,210,255,.18);
+}
+
+.title{
+text-align:center;
+font-size:42px;
+font-weight:800;
+color:#666;
+}
+
+.subtitle{
+text-align:center;
+color:#999;
+}
+
+</style>
+
+""",
+unsafe_allow_html=True)
+
+# -------------------
+
+# 헤더
+
+# -------------------
+
+st.markdown("""
+
+<div class='box'>
+
+<div class='title'>
+🌷 PokéMBTI
+</div>
+
+<div class='subtitle'>
+MBTI로 나와 닮은 포켓몬 찾기
+</div>
+
+</div>
+""",
+unsafe_allow_html=True)
+
+st.write("")
+
+selected = st.selectbox(
+"🫧 MBTI 선택",
+all_mbti
+)
+
+if st.button(
+"💖 결과 보기",
+use_container_width=True
+):
+
+```
+progress = st.progress(0)
+
+for i in range(100):
+    time.sleep(0.008)
+    progress.progress(i+1)
+
+st.balloons()
+
+name, image, mbti_text, reason = pokemon[selected]
+
+score = random.randint(90,100)
+
+st.markdown("<div class='box'>",
+unsafe_allow_html=True)
+
+col1, col2 = st.columns([1,1])
+
+with col1:
+
+    st.image(
+        image,
+        use_container_width=True
+    )
+
+with col2:
+
+    st.markdown(f"""
+```
+
+## 🎀 {name}
+
+### 🌸 MBTI 성향
+
+{mbti_text}
+
+### ✨ 왜 어울릴까?
+
+{reason}
+
+### 💖 싱크로율
+
+# {score}%
+
+""")
+
+```
+st.markdown(
+```
+
+"</div>",
+unsafe_allow_html=True
+)
+
+```
+st.success(
+    "포켓몬이 널 선택했어 🎈"
+)
+```
+
+st.write("")
+st.caption("made with 🌷 streamlit")
+
 page_icon="✨",
 layout="centered"
 )
